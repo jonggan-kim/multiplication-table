@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .box1 {
+      border-radius: 10px;
+      border: 2px solid #73ad21;
+      color: white;
+      background-color: #73ad21;
+      padding: 10px;
+      margin: 10px;
+      width: 400px;
+      height: 20px;
+      text-align: center;
+    }
+
+    .box2 {
+      padding: 10px;
+      margin: 10px;
+      width: 400px;
+      text-align: center;
+    }
+
+    #msg {
+      width: 400px;
+      height: 400px;
+      margin: 10px;
+      padding: 10px;
+      border: 2px solid #73ad21;
+      font-size: 14px;
+      color: red;
+      text-align: center;
+    }
+
+    .r_times {
+      margin-top: 80px;
+      font-size: 40px;
+      text-align: center;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  </style>
+  <script>
+    function showTimes() {
+      if (form1.sel_mul.value == "") {
+        alert("Please select Times");
+        form1.sel_mul.focus();
+        return;
+      }
+      var times = parseInt(form1.sel_mul.value);
+      var str = "";
+
+      for (var i = 1; i <= 9; i++) {
+        str = str + "<h2>" + times + "x" + i + "=" + (times * i) + "</h2>";
+      }
+      document.getElementById("msg").innerHTML = str;
+    }
+
+    function showRandom() {
+      var times = Math.floor(Math.random() * 8) + 2;
+      var i = Math.floor(Math.random() * 9) + 1;
+      var str = ""
+      str = str + "<h1 class='r_times'>" + times + "x" + i + "=" + (times * i) + "</h1>" + "<br>";
+      document.getElementById("msg").innerHTML = str;
+    }
+
+    function clearTimes() {
+      form1.reset();
+      document.getElementById("msg").innerHTML = ""
+    }
+  </script>
+</head>
+
+<body>
+
+  <form name="form1">
+    <div class="box1">
+      Multiplication Table Exercise
+    </div>
+    <div class="box2">
+      <select name="sel_mul" id="sel_mul">
+        <option value="">Times</option>
+        <option value="2">2 Times</option>
+        <option value="3">3 Times</option>
+        <option value="4">4 Times</option>
+        <option value="5">5 Times</option>
+        <option value="6">6 Times</option>
+        <option value="7">7 Times</option>
+        <option value="8">8 Times</option>
+        <option value="9">9 Times</option>
+      </select>
+      <input type="button" value="Show Times" onclick="showTimes();">
+      <input type="button" value="Show Random" onclick="showRandom();">
+      <input type="button" value="Clear" onclick="clearTimes();">
+    </div>
+
+    <div id="msg">
+
+    </div>
+  </form>
+</body>
+
+</html>
