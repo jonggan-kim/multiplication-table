@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .box1 {
+      border-radius: 10px;
+      border: 2px solid #73ad21;
+      color: white;
+      background-color: #73ad21;
+      padding: 10px;
+      margin: 10px;
+      width: 470px;
+      height: 60px;
+      text-align: center;
+    }
+
+    .box2 {
+      padding: 10px;
+      margin: 10px;
+      width: 470px;
+      text-align: center;
+    }
+
+    #msg {
+      width: 400px;
+      height: 400px;
+      margin-top: 10px;
+      padding: 50px;
+      border: 2px solid #73ad21;
+      font-size: 14px;
+      color: red;
+      text-align: center;
+    }
+
+    .r_times {
+      margin-top: 80px;
+      font-size: 40px;
+      text-align: center;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  </style>
+  <script>
+    function showTimes() {
+      if (form1.sel_mul.value == "") {
+        alert("Please select Times");
+        form1.sel_mul.focus();
+        return;
+      }
+      var times = parseInt(form1.sel_mul.value);
+      var str = "";
+
+      for (var i = 1; i <= 9; i++) {
+        str = str + "<h2>" + times + "x" + i + "=" + (times * i) + "</h2>";
+      }
+      document.getElementById("msg").innerHTML = str;
+    }
+
+    function showRandom() {
+      var times = Math.floor(Math.random() * 8) + 2; //generate random # among 2 and 9
+      var i = Math.floor(Math.random() * 9) + 1; //generate random # among 1 and 9
+      var ans = times * i;
+      var ans10 = Math.floor(ans / 10);
+      var ans1 = ans % 10;
+      var str = ""
+      //show the image for the random number chosen(among 2 and 9)
+      str = str + "<img src='./img/" + times + ".png'>";
+      //show the multiplication (x) image
+      str = str + "<img src='./img/x.png'>";
+      //show the image for the random number chosen(among 1 and 9)
+      str = str + "<img src='./img/" + i + ".png'>";
+      //show the equal sign(=) image
+      str = str + "<img src='./img/equal.png'>";
+
+      //check if there is tenth digit or not. if no, show the blank image for the tenth digit
+      if (ans10 == 0) str = str + "<img src='./img/blank.png'>";
+      //show the tenth digit
+      else str = str + "<img src='./img/" + ans10 + ".png'>";
+      //show the oneth digit
+      str = str + "<img src='./img/" + ans1 + ".png'>";
+      //show the output of the multiplication 
+      document.getElementById("msg").innerHTML = str;
+    }
+    // reset the times and clear output display
+    function clearTimes() {
+      form1.reset();
+      document.getElementById("msg").innerHTML = ""
+    }
+  </script>
+</head>
+
+<body>
+
+  <form name="form1">
+    <div class="box1">
+      <h2>Multiplication Table Exercise</h2>
+    </div>
+    <div class="box2">
+      <select name="sel_mul" id="sel_mul">
+        <option value="">Times</option>
+        <option value="2">2 Times</option>
+        <option value="3">3 Times</option>
+        <option value="4">4 Times</option>
+        <option value="5">5 Times</option>
+        <option value="6">6 Times</option>
+        <option value="7">7 Times</option>
+        <option value="8">8 Times</option>
+        <option value="9">9 Times</option>
+      </select>
+      <input type="button" value="Show Times" onclick="showTimes();">
+      <input type="button" value="Show Random" onclick="showRandom();">
+      <input type="button" value="Clear" onclick="clearTimes();">
+    </div>
+
+    <div id="msg">
+
+    </div>
+  </form>
+</body>
+
+</html>
